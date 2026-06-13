@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SciPulse - Frutiger Aero UI</title>
+  <title>SciPulse - The Land Of Science</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
   
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -36,7 +36,7 @@
     }
 
     /* =========================================
-       THE ORIGINAL WHITE HOME BUTTON
+       WHITE GLASSY BUTTONS
        ========================================= */
     .home-btn {
       position: relative;
@@ -45,7 +45,6 @@
       text-decoration: none; 
       color: #333; 
       cursor: pointer;
-      
       background: linear-gradient(to bottom, #ffffff, #e6f0ff);
       border: 4px solid rgba(255, 255, 255, 0.6); 
       background-clip: padding-box;
@@ -62,55 +61,49 @@
       pointer-events: none; z-index: 1;
     }
 
-    .home-btn img, .home-btn strong {
-      position: relative; z-index: 2;
-    }
-
+    .home-btn img, .home-btn strong { position: relative; z-index: 2; }
     .home-btn img {
       width: 64px; height: 64px; border-radius: 50%;
       margin-bottom: -12px; margin-top: -12px; margin-right: -12px; margin-left: -12px;
     }
-
     .home-btn strong { font-size: 16px; }
+    .home-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 2px 6px rgba(255,255,255,1); }
 
-    .home-btn:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 2px 6px rgba(255,255,255,1);
-    }
-
-    /* =========================================
-       WHITE/GLASSY BUTTONS
-       ========================================= */
-    .start-btn, .side-btn, .back-btn, .action-btn {
-      position: relative;
-      background: linear-gradient(to bottom, #ffffff, #e6f0ff);
-      color: #333;
-      text-shadow: none;
-      border: 4px solid rgba(255, 255, 255, 0.6);
-      background-clip: padding-box;
+    .start-btn {
+      position: relative; background: linear-gradient(to bottom, #ffffff, #e6f0ff); color: #333;
+      border: 6px solid rgba(255, 255, 255, 0.6); background-clip: padding-box;
       box-shadow: 0 6px 15px rgba(0,0,0,0.15), inset 0 4px 10px rgba(255,255,255,1);
-      cursor: pointer; user-select: none; text-decoration: none;
-      overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: inherit;
+      cursor: pointer; user-select: none; text-decoration: none; overflow: hidden;
+      padding: 20px 50px; font-size: 24px; font-weight: 600; border-radius: 40px; animation: pulse 2s infinite ease-in-out;
     }
-
-    .start-btn::before, .side-btn::before, .back-btn::before, .action-btn::before {
+    .start-btn::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
       background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
       pointer-events: none; z-index: 1;
     }
 
-    .start-btn { padding: 20px 50px; font-size: 24px; font-weight: 600; border-radius: 40px; animation: pulse 2s infinite ease-in-out; border-width: 6px; }
+    /* =========================================
+       FRUTIGER BLUE BUTTONS
+       ========================================= */
+    .side-btn, .back-btn, .action-btn {
+      position: relative; background: linear-gradient(180deg, #33b8ff 0%, #005ce6 48%, #0033b3 50%, #001a80 100%);
+      color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+      border: 2px solid rgba(255, 255, 255, 0.7); background-clip: padding-box;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -4px 10px rgba(0,0,0,0.4);
+      cursor: pointer; user-select: none; text-decoration: none; overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease; font-family: inherit;
+    }
+    .side-btn::before, .back-btn::before, .action-btn::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 48%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.1) 100%); pointer-events: none; z-index: 1;
+    }
     .side-btn { display: block; width: 100%; padding: 12px 20px; margin-bottom: 15px; text-align: center; font-weight: 600; font-size: 16px; border-radius: 30px; }
     .side-btn span, .action-btn span { position: relative; z-index: 2; }
     .back-btn { position: absolute; top: 20px; left: 20px; padding: 10px 15px; font-weight: 600; border-radius: 14px; }
     .action-btn { padding: 10px 25px; font-weight: 600; font-size: 16px; border-radius: 20px; }
-
-    .side-btn:hover, .back-btn:hover, .action-btn:hover {
-      transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.2), inset 0 2px 6px rgba(255,255,255,1);
-    }
+    .side-btn:hover, .back-btn:hover, .action-btn:hover { transform: scale(1.05); box-shadow: 0 12px 20px rgba(0,0,0,0.4), inset 0 2px 6px rgba(255,255,255,1); }
 
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); box-shadow: 0 15px 30px rgba(0,0,0,0.2), inset 0 4px 12px rgba(255,255,255,1); } 100% { transform: scale(1); } }
-    @keyframes pulse-small { 0% { transform: scale(1); } 50% { transform: scale(1.03); box-shadow: 0 10px 20px rgba(0,0,0,0.15), inset 0 4px 10px rgba(255,255,255,1); } 100% { transform: scale(1); } }
 
     /* =========================================
        LAYOUT & PANELS
@@ -120,7 +113,6 @@
       background: linear-gradient(180deg, rgba(51, 184, 255, 0.75) 0%, rgba(0, 51, 179, 0.85) 100%);
       border: 2px solid rgba(255, 255, 255, 0.6); backdrop-filter: blur(12px);
     }
-
     .topbar::before, .container::before, .sidebar::before {
       content: ''; position: absolute; top: 0; left: 0; right: 0; height: 40%;
       background: linear-gradient(180deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.0) 100%);
@@ -145,10 +137,8 @@
        ========================================= */
     .section-title { position: relative; z-index: 2; color: white; text-shadow: 0 2px 4px rgba(0,0,0,0.5); margin-top: 0; font-weight: 800; font-size: 28px; }
     
-    /* Hidden by default until logged in */
     .journal-composer { position: relative; z-index: 2; margin-bottom: 40px; display: none; animation: fadeIn 0.5s ease; }
 
-    /* Glassy Inputs for Journal & Login */
     .glass-input {
       width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 15px; font-family: inherit; font-size: 16px;
       background: rgba(255, 255, 255, 0.2); color: white; border: 2px solid rgba(255, 255, 255, 0.5);
@@ -158,12 +148,54 @@
     .glass-input::placeholder { color: rgba(255, 255, 255, 0.7); }
     .glass-input:focus { background: rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.8); }
 
+    /* --- UPDATED: White Glossy Article Cards --- */
     .article-feed { position: relative; z-index: 2; margin-bottom: 40px; }
-    .article-card { position: relative; padding: 20px; margin-bottom: 15px; border-radius: 12px; background: linear-gradient(180deg, rgba(100, 200, 255, 0.4) 0%, rgba(50, 150, 200, 0.2) 100%); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 4px 10px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.4); color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.5); overflow: hidden; animation: slideIn 0.4s ease-out; }
-    .article-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%; background: linear-gradient(180deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%); pointer-events: none; }
-    .article-meta { font-size: 12px; color: rgba(255,255,255,0.8); margin-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.2); padding-bottom: 4px; }
-    .article-content { font-size: 16px; line-height: 1.5; white-space: pre-wrap; }
+    
+    .article-card { 
+      position: relative; 
+      padding: 20px; 
+      margin-bottom: 15px; 
+      border-radius: 12px; 
+      background: linear-gradient(to bottom, #ffffff, #e6f0ff);
+      background-clip: padding-box;
+      border: 2px solid rgba(255, 255, 255, 0.8); 
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15), inset 0 4px 10px rgba(255,255,255,1);
+      color: #333; /* Dark text */
+      text-shadow: none; /* Removed shadow so dark text is crisp */
+      overflow: hidden; 
+      animation: slideIn 0.4s ease-out; 
+    }
+    
+    .article-card::before { 
+      content: ''; 
+      position: absolute; top: 0; left: 0; right: 0; height: 50%; 
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%); 
+      pointer-events: none; 
+      z-index: 1;
+    }
+    
+    /* Place content above the glare */
+    .article-meta, .article-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .article-meta { 
+      font-size: 12px; 
+      color: #666; /* Dark grey for metadata */
+      margin-bottom: 8px; 
+      border-bottom: 1px solid rgba(0,0,0,0.1); /* Subtle dark divider */
+      padding-bottom: 4px; 
+    }
+    
+    .article-content { 
+      font-size: 16px; 
+      line-height: 1.5; 
+      white-space: pre-wrap; 
+    }
+
     @keyframes slideIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    
     .glass-divider { position: relative; z-index: 2; border: 0; height: 2px; margin: 30px 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent); }
 
     /* =========================================
@@ -175,10 +207,7 @@
       display: none; flex-direction: column; align-items: center; justify-content: center;
       z-index: 9999; animation: fadeIn 0.3s ease;
     }
-    .login-box {
-      width: 100%; max-width: 400px; text-align: center;
-      padding: 40px; border-radius: 20px;
-    }
+    .login-box { width: 100%; max-width: 400px; text-align: center; padding: 40px; border-radius: 20px; }
 
     /* =========================================
        TILES & APP SCREEN
@@ -337,8 +366,8 @@
 
     try {
       // !!! PUT YOUR KEYS HERE !!!
-      const supabaseUrl = 'https://ndtktnndckutthldosrw.supabase.co';
-      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kdGt0bm5kY2t1dHRobGRvc3J3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEzNjgxNzcsImV4cCI6MjA5Njk0NDE3N30.6KB3EcC854jjF7PZs-GZCrCGCzuCpLBvAgUEyt2z1Yg';
+      const supabaseUrl = 'YOUR_SUPABASE_URL_HERE';
+      const supabaseKey = 'YOUR_SUPABASE_ANON_KEY_HERE';
       const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
       // --- Database Fetching ---

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wii U Style UI - Glossy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(180deg, #cfe7ff 0%, #dbeeff 40%, #eef6ff 70%, #ffffff 100%);
+      background-attachment: fixed;
+      overflow: hidden;
+    }
+
+    /* --- Welcome Screen Styles --- */
+    #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #cfe7ff 0%, #eef6ff 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999; 
+      transition: opacity 0.5s ease;
+    }
+
+    .start-btn {
+      position: relative;
+      padding: 20px 50px;
+      font-size: 24px;
+      font-weight: 600;
+      color: #333;
+      background: linear-gradient(to bottom, #ffffff, #e6f0ff);
+      border: 6px solid rgba(255, 255, 255, 0.6);
+      background-clip: padding-box;
+      border-radius: 40px;
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.15),
+        inset 0 4px 12px rgba(255,255,255,1);
+      cursor: pointer;
+      animation: pulse 2s infinite ease-in-out;
+      user-select: none;
+    }
+
+    .start-btn::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      height: 55%;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0));
+      border-top-left-radius: 34px;
+      border-top-right-radius: 34px;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); box-shadow: 0 18px 35px rgba(0,0,0,0.2), inset 0 4px 12px rgba(255,255,255,1); }
+      100% { transform: scale(1); }
+    }
+
+    /* --- Main UI Styles --- */
+    .topbar {
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0.5));
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .topbar .left, .topbar .right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, #ffffff, #cccccc);
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      margin: 40px auto;
+      max-width: 1000px;
+      padding: 40px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(25px);
+      box-shadow:
+        0 20px 40px rgba(0,0,0,0.1),
+        inset 0 2px 20px rgba(255,255,255,0.8);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 25px;
+      justify-items: center;
+    }
+
+    .tile {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(to bottom, #ffffff, #e6f0ff);
+      /* Removed the border so the image frame looks clean */
+      border-radius: 28px;
+      box-shadow:
+        0 8px 15px rgba(0,0,0,0.1),
+        inset 0 4px 10px rgba(255,255,255,1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .tile::before {
+      content: '';
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      height: 55%;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,0));
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* --- The Vista Frame Overlay --- */
+    .tile::after {
+      content: '';
+      position: absolute;
+      /* Adjust these numbers depending on how thick your frame is! */
+      top: -10px; 
+      left: -10px; 
+      right: -10px; 
+      bottom: -10px;
+      /* REPLACE THIS WITH YOUR PNG LINK */
+      background: url('your-vista-frame.png') center/100% 100% no-repeat;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .tile:hover {
+      transform: scale(1.1);
+      box-shadow:
+        0 12px 25px rgba(0,0,0,0.2),
+        inset 0 4px 12px rgba(255,255,255,1);
+    }
+
+    .tile img {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      z-index: 1;
+    }
+
+    .tile span {
+      font-size: 14px;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .app-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, #ffffff, #e6f0ff);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+      z-index: 100;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* --- NEW: Fade Out Animation for App Screen --- */
+    @keyframes fadeOut {
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.95); }
+    }
+
+    .app-screen.closing {
+      animation: fadeOut 0.3s ease forwards;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 10px 15px;
+      border-radius: 14px;
+      border: none;
+      background: linear-gradient(to bottom, #ffffff, #dcdcdc);
+      box-shadow:
+        inset 0 2px 4px rgba(255,255,255,0.9),
+        inset 0 -2px 4px rgba(0,0,0,0.2),
+        0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="welcome-screen">
+    <div class="start-btn" id="start-btn">Touch to Start</div>
+  </div>
+
+  <div class="topbar">
+    <div class="left">
+      <div style="display:flex; align-items:center; gap:0;">
+        <img src="logo.png" alt="Logo" style="width:96px; height:96px; border-radius:8px;">
+        <strong style="font-size:16px; margin-left: -10px;">SciPulse</strong>
+      </div>
+    </div>
+    <div class="right">
+      <span id="clock"></span>
+      <div class="avatar"></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <div class="app-screen" id="appScreen">
+    <button class="back-btn" onclick="closeApp()">Back</button>
+    <h1 id="appTitle"></h1>
+  </div>
+
+  <audio id="bg-music" loop>
+    <source src="https://files.catbox.moe/m34ike.flac" type="audio/flac">
+  </audio>
+
+  <script>
+    const apps = [
+      { name: 'Browser', icon: 'https://frutigeraeroarchive.org/images/icons/windows_vista/vista_netcenter.ico' },
+      { name: 'Settings', icon: 'CP010.ico' },
+      { name: 'Gallery', icon: 'File104.ico' },
+      { name: 'Music', icon: 'Media004.ico' },
+      { name: 'Games', icon: 'H&D061.ico' },
+      { name: 'Chat', icon: 'https://frutigeraeroarchive.org/images/icons/windows_vista/vista_messenger.ico' }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    apps.forEach(app => {
+      const tile = document.createElement('div');
+      tile.className = 'tile';
+
+      tile.innerHTML = `
+        <img src="${app.icon}" />
+        <span>${app.name}</span>
+      `;
+
+      tile.onclick = () => openApp(app.name);
+      grid.appendChild(tile);
+    });
+
+    function openApp(name) {
+      document.getElementById('appTitle').innerText = name;
+      document.getElementById('appScreen').style.display = 'flex';
+    }
+
+    // --- UPDATED: App Screen Fade Out Logic ---
+    function closeApp() {
+      const appScreen = document.getElementById('appScreen');
+      
+      // Add the closing class to start the animation
+      appScreen.classList.add('closing');
+      
+      // Wait for the animation to finish (0.3s), then hide and clean up
+      setTimeout(() => {
+        appScreen.style.display = 'none';
+        appScreen.classList.remove('closing');
+      }, 300);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clock').innerText = time;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // --- Welcome Screen & Background Music Logic ---
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const startBtn = document.getElementById('start-btn');
+    const backgroundMusic = document.getElementById('bg-music');
+    
+    backgroundMusic.volume = 0.4; 
+
+    // Listen for the click on the welcome button
+    startBtn.addEventListener('click', function() {
+      // 1. Play the music
+      if (backgroundMusic.paused) {
+        backgroundMusic.play().catch(error => {
+          console.log("Audio play failed:", error);
+        });
+      }
+      
+      // 2. Fade out the welcome screen
+      welcomeScreen.style.opacity = '0';
+      
+      // 3. Remove it from the DOM completely after the fade animation finishes (0.5s)
+      setTimeout(() => {
+        welcomeScreen.style.display = 'none';
+      }, 500);
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+body {
+  background-color: white;
+  color: black;
+  font-family: Verdana;
+  background: #ffffff;
+    background: -webkit-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(128, 192, 255, 1) 50%, rgba(74, 143, 255, 1) 100%);
+  background: -moz-linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(128, 192, 255, 1) 50%, rgba(74, 143, 255, 1) 100%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(128, 192, 255, 1) 50%, rgba(74, 143, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFFFFF", endColorstr="#4A8FFF", GradientType=0);
+}

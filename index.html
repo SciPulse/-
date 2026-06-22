@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SciPulse - Windows 7 Edition</title>
-
-  <link rel="stylesheet" href="https://unpkg.com/7.css">
-
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/7.css/dist/7.css">
+  
   <style>
     body {
       margin: 0;
@@ -48,7 +48,7 @@
       margin-bottom: 5px;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
     }
-
+    
     .desktop-icon:hover {
       background: rgba(255, 255, 255, 0.2);
       border: 1px solid rgba(255, 255, 255, 0.4);
@@ -63,7 +63,7 @@
       position: relative;
       z-index: 10;
     }
-
+    
     .content-area {
       padding: 15px;
     }
@@ -83,7 +83,7 @@
   </div>
 
   <div class="window active app-window">
-
+    
     <div class="title-bar">
       <div class="title-bar-text">SciPulse Workspace</div>
       <div class="title-bar-controls">
@@ -94,7 +94,7 @@
     </div>
 
     <div class="window-body has-space" style="margin: 0;">
-
+      
       <ul role="menu-bar" style="margin-top: 0; border-bottom: 1px solid #ccc;">
         <li role="menu-item" tabindex="0" aria-haspopup="true">
           File
@@ -110,7 +110,7 @@
       </ul>
 
       <div class="content-area">
-
+        
         <fieldset>
           <legend>Composer</legend>
           <div style="margin-bottom: 8px;">
@@ -139,7 +139,7 @@
         </fieldset>
 
       </div>
-
+      
     </div>
   </div>
 
@@ -148,18 +148,18 @@
     function publish() {
       const titleInput = document.getElementById('article-title');
       const contentInput = document.getElementById('article-content');
-
+      
       const title = titleInput.value.trim();
       const content = contentInput.value.trim();
-
+      
       if (title || content) {
         const ul = document.getElementById('article-list');
         const li = document.createElement('li');
-
+        
         // Displays the title if it exists, otherwise the first bit of the content
         li.innerText = title ? title : content.substring(0, 30) + '...';
         ul.prepend(li);
-
+        
         // Reset inputs
         titleInput.value = '';
         contentInput.value = '';

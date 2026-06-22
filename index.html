@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SciPulse - Windows 7 Edition</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/7.css">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* Classic Windows 7 Aurora Desktop Background */
+      background: radial-gradient(circle at 50% 100%, #308cd6 0%, #155594 40%, #00173d 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+
+    /* Mocking some desktop icons */
+    .desktop {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 1;
+    }
+
+    .desktop-icon {
+      width: 80px;
+      text-align: center;
+      color: white;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+      font-size: 12px;
+      cursor: pointer;
+      padding: 5px;
+      border: 1px solid transparent;
+    }
+
+    .desktop-icon img {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 5px;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    }
+
+    .desktop-icon:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 4px;
+      box-shadow: inset 0 0 5px rgba(255,255,255,0.3);
+    }
+
+    /* Main Application Window */
+    .app-window {
+      width: 550px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 10;
+    }
+
+    .content-area {
+      padding: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="desktop">
+    <div class="desktop-icon">
+      <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="Computer">
+      <span>Computer</span>
+    </div>
+    <div class="desktop-icon">
+      <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin">
+      <span>Recycle Bin</span>
+    </div>
+  </div>
+
+  <div class="window active app-window">
+
+    <div class="title-bar">
+      <div class="title-bar-text">SciPulse Workspace</div>
+      <div class="title-bar-controls">
+        <button aria-label="Minimize"></button>
+        <button aria-label="Maximize"></button>
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+
+    <div class="window-body has-space" style="margin: 0;">
+
+      <ul role="menu-bar" style="margin-top: 0; border-bottom: 1px solid #ccc;">
+        <li role="menu-item" tabindex="0" aria-haspopup="true">
+          File
+          <ul role="menu">
+            <li role="menu-item"><a href="#new">New Article</a></li>
+            <li role="menu-item"><a href="#save">Save Database</a></li>
+            <li role="menu-item">Exit</li>
+          </ul>
+        </li>
+        <li role="menu-item" tabindex="0">Edit</li>
+        <li role="menu-item" tabindex="0">View</li>
+        <li role="menu-item" tabindex="0">Help</li>
+      </ul>
+
+      <div class="content-area">
+
+        <fieldset>
+          <legend>Composer</legend>
+          <div style="margin-bottom: 8px;">
+            <input type="text" id="article-title" style="width: 100%; box-sizing: border-box;" placeholder="Article title...">
+          </div>
+          <div style="margin-bottom: 10px;">
+            <textarea id="article-content" rows="5" style="width: 100%; resize: none; box-sizing: border-box;" placeholder="What's on your mind?"></textarea>
+          </div>
+          <button class="default" onclick="publish()">Publish</button>
+          <button>Save Draft</button>
+        </fieldset>
+
+        <fieldset style="margin-top: 15px;">
+          <legend>Archive Explorer</legend>
+          <ul class="tree-view" id="feed-tree" style="height: 120px; overflow-y: auto;">
+            <li>
+              <details open>
+                <summary>Local Entries</summary>
+                <ul id="article-list">
+                  <li>Hello, World!!!</li>
+                  <li>This is the first implementation of a method of journaling.</li>
+                </ul>
+              </details>
+            </li>
+          </ul>
+        </fieldset>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Native DOM logic replacing the previous framework
+    function publish() {
+      const titleInput = document.getElementById('article-title');
+      const contentInput = document.getElementById('article-content');
+
+      const title = titleInput.value.trim();
+      const content = contentInput.value.trim();
+
+      if (title || content) {
+        const ul = document.getElementById('article-list');
+        const li = document.createElement('li');
+
+        // Displays the title if it exists, otherwise the first bit of the content
+        li.innerText = title ? title : content.substring(0, 30) + '...';
+        ul.prepend(li);
+
+        // Reset inputs
+        titleInput.value = '';
+        contentInput.value = '';
+      }
+    }
+  </script>
+</body>
+</html>
